@@ -1,0 +1,9 @@
+common:
+  footer: Made with QuickStart
+
+menu:
+  home: Home
+  settings: Settings
+
+settings:
+  language: Language

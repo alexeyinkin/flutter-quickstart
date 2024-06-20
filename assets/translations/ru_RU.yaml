@@ -1,0 +1,9 @@
+common:
+  footer: Сделано с помощью QuickStart
+
+menu:
+  home: Главная
+  settings: Настройки
+
+settings:
+  language: Язык

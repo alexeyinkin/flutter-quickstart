@@ -1,0 +1,9 @@
+name: quickstart_example
+publish_to: none
+
+environment:
+  sdk: ^3.5.0-180
+
+dependencies:
+  flutter: { sdk: flutter }
+  quickstart: { path: ../ }
