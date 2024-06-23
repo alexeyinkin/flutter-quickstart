@@ -19,7 +19,6 @@ class QuickSettingsScreen extends StatelessWidget {
     final delegate = QuickStart.delegate;
 
     return QuickScaffold(
-      delegate: delegate,
       maxWidth: QuickSizes.maxTextPageWidth,
       bodySize: BodySize.infinite,
       body: Column(

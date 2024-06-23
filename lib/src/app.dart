@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'pages/tabs/screen.dart';
 import 'quickstart.dart';
 import 'router/delegate.dart';
-import 'router/route_information_parser.dart';
 import 'theme/theme.dart';
 import 'util/element.dart';
 
@@ -53,7 +52,7 @@ class _MyAppState extends State<_MyApp> {
     QuickTabsScreen(delegate: QuickStart.delegate),
   );
 
-  final _routeInformationParser = QuickRouteInformationParser();
+  final _routeInformationParser = QuickStart.delegate.routeInformationParser;
   final _backButtonDispatcher =
       PageStacksBackButtonDispatcher(QuickStart.delegate.pageStacks);
 

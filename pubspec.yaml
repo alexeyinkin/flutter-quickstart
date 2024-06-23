@@ -4,7 +4,7 @@ description: |
   language switch, Firebase authentication, and more. Set up in seconds.
 
 repository: https://github.com/alexeyinkin/flutter-quickstart
-version: 0.1.0-1.dev
+version: 0.1.0-2.dev
 
 topics:
   - template

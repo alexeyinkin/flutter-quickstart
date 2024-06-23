@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../delegate.dart';
+import '../../quickstart.dart';
 import '../../theme/extension.dart';
 import '../../theme/theme.dart';
 import '../../util/build_context.dart';
@@ -14,20 +15,20 @@ import 'horizontal_black_line.dart';
 class QuickScaffold extends StatelessWidget {
   final Widget body;
   final BodySize bodySize;
-  final QuickDelegate delegate;
+  final QuickDelegate? delegate;
   final double? maxWidth;
   final bool padding;
 
   const QuickScaffold({
     required this.body,
     required this.bodySize,
-    required this.delegate,
+    this.delegate,
     this.maxWidth,
     this.padding = true,
   });
 
   const QuickScaffold.loading({
-    required this.delegate,
+    this.delegate,
     this.maxWidth,
     this.padding = true,
   })  : bodySize = BodySize.infinite,
@@ -38,6 +39,7 @@ class QuickScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobileScreen();
+    final delegate = this.delegate ?? QuickStart.delegate;
 
     Widget child = body;
 

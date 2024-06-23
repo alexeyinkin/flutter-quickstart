@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../quickstart.dart';
 import '../../util/build_context.dart';
 import '../../widgets/layout/scaffold.dart';
 import 'state.dart';
@@ -15,7 +14,6 @@ class QuickHomeScreen extends StatelessWidget {
     final isMobile = context.isMobileScreen();
 
     return QuickScaffold(
-      delegate: QuickStart.delegate,
       bodySize: BodySize.finite,
       body: isMobile ? const NarrowHomeWidget() : const WideHomeWidget(),
       padding: !isMobile,

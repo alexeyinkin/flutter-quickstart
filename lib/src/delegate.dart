@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'notifiers/settings.dart';
 import 'router/page_factory.dart';
 import 'router/page_stacks.dart' as ps;
+import 'router/route_information_parser.dart';
 import 'router/tab_enum.dart';
 import 'util/iterable.dart';
 import 'widgets/layout/padding.dart';
@@ -36,6 +37,9 @@ abstract class QuickDelegate<T extends Enum> {
       QuickPageFactory.createPage(factoryKey, state);
 
   PageStacks get pageStacks => ps.pageStacks;
+
+  RouteInformationParser<Object> get routeInformationParser =>
+      QuickRouteInformationParser();
 
   late final settingsNotifier = SettingsNotifier(locales: locales);
 
