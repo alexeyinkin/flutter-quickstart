@@ -1,3 +1,6 @@
+auth:
+  signInWith: 'Войти через {provider}'
+
 common:
   footer: Сделано с помощью QuickStart
 

@@ -1,5 +1,6 @@
 import 'package:app_state/app_state.dart';
 import 'package:enum_map/enum_map.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
 import 'notifiers/settings.dart';
@@ -13,6 +14,14 @@ import 'widgets/layout/spacing.dart';
 import 'widgets/menu/top_menu.dart';
 
 abstract class QuickDelegate<T extends Enum> {
+  List<Widget> addSpacing(List<Widget> widgets) =>
+      widgets.intersperse(spacing).toList(growable: false);
+
+  final authProviders = [
+    GoogleAuthProvider.PROVIDER_ID,
+    AppleAuthProvider.PROVIDER_ID,
+  ];
+
   UnmodifiableEnumMap<T, AbstractPage> get bottomPages;
 
   Widget getHeaderFiller() => const SizedBox.shrink();

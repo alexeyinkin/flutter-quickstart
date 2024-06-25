@@ -24,6 +24,7 @@ dependencies:
   easy_localization_yaml: ^0.1.2
   enum_map: ^0.4.0-2.dev
   firebase_analytics: ^11.0.1
+  firebase_auth: ^5.1.0
   firebase_core: ^3.1.0
   flag: ^7.0.0
   flutter: { sdk: flutter }
@@ -31,7 +32,7 @@ dependencies:
   google_fonts: ^6.2.1
   keyed_collection_widgets: ^0.4.3
   model_fetch: ^0.5.6
-  model_fetch_firestore: ^0.5.7
+  model_fetch_firestore: ^0.6.0-2.dev
   model_interfaces: ^0.3.1
   shared_preferences: ^2.2.3
   url_strategy: ^0.2.0
@@ -39,6 +40,9 @@ dependencies:
 
 dev_dependencies:
   total_lints: ^3.4.0
+
+dependency_overrides:
+  #model_fetch_firestore: { path: ../../dart/dart-model-fetch/model_fetch_firestore }
 
 flutter:
   assets:

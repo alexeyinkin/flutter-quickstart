@@ -17,12 +17,16 @@ class ToastWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: toast.type == ToastType.error ? colors.error : colors.info,
-      child: Column(
-        children: [
-          Text(toast.title),
-          delegate.spacing,
-          Text(toast.description),
-        ],
+      child: delegate.pad(
+        Column(
+          children: [
+            Text(toast.title),
+            if (toast.description != null) ...[
+              delegate.spacing,
+              Text(toast.description!),
+            ],
+          ],
+        ),
       ),
     );
   }

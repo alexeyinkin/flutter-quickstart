@@ -1,3 +1,6 @@
+auth:
+  signInWith: 'Sign in with {provider}'
+
 common:
   footer: Made with QuickStart
 

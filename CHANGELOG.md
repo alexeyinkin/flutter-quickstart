@@ -1,3 +1,12 @@
+## 0.1.0-3.dev
+
+* Added `AuthenticationNotifier`.
+* Added `QuickDelegate.addSpacing()`.
+* Added `quickTr()` to a `Map<String, String>` extension to pick a translation from a map of localized strings.
+* Exported `Toast`, `ToastType`, `ToastNotifer`, `Iterable` extensions, `H2`.
+* Merging the app's own localization strings into easy_localization's.
+* Made `Toast.description` optional.
+
 ## 0.1.0-2.dev
 
 * Added `QuickDelegate.routeInformationParser`.

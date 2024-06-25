@@ -4,21 +4,22 @@ import 'package:model_fetch_firestore/model_fetch_firestore.dart';
 
 import '../enums/collection.dart';
 import '../models/global.dart';
-import 'firestore.dart';
 
 const _collection = QuickCollection.Global;
 
 final quickGlobalFirestoreLoaderFactory = QuickGlobalFirestoreLoaderFactory();
 
 class QuickGlobalFirestoreLoaderFactory
-    extends QuickFirestoreLoaderFactory<QuickGlobal, AbstractFilter> {
+    extends AbstractFirestoreLoaderFactory<QuickGlobal, AbstractFilter> {
   @override
   CollectionReference<Map<String, dynamic>> getCollection() {
     return FirebaseFirestore.instance.collection(_collection.name);
   }
 
   @override
-  QueryBuilder<QuickGlobal> createQueryBuilder(AbstractFilter filter) {
+  QueryBuilder<QuickGlobal, AbstractFilter> createQueryBuilder(
+    AbstractFilter filter,
+  ) {
     throw UnimplementedError();
   }
 

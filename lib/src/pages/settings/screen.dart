@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants/sizes.dart';
 import '../../quickstart.dart';
+import '../../widgets/auth/authenticated_or_not.dart';
+import '../../widgets/auth/profile_sign_out.dart';
 import '../../widgets/language/switch.dart';
 import '../../widgets/layout/h2.dart';
 import '../../widgets/layout/scaffold.dart';
@@ -22,11 +24,15 @@ class QuickSettingsScreen extends StatelessWidget {
       maxWidth: QuickSizes.maxTextPageWidth,
       bodySize: BodySize.infinite,
       body: Column(
-        children: [
+        children: delegate.addSpacing([
           H2Widget(
             'menu.settings'.tr(),
           ),
-          delegate.spacing,
+          AuthenticatedOrNotWidget(
+            authenticatedBuilder: (context, firebaseUser) {
+              return ProfileSignOutWidget(firebaseUser: firebaseUser);
+            },
+          ),
           SettingsTableWidget(
             children: {
               if (delegate.settingsNotifier.locales.length > 1)
@@ -37,7 +43,7 @@ class QuickSettingsScreen extends StatelessWidget {
             },
             delegate: delegate,
           ),
-        ],
+        ]),
       ),
     );
   }

@@ -98,7 +98,7 @@ abstract class QuickColors {
   static const error = Color(0xFFC62828);
   static const minorLabel = Color(0x30000000);
   static const nestingColor = Color(0x10000000);
-  static const notificationColor = Color(0xFFFFFFFF);
+  static const notificationColor = Color(0xFFE0E0E0);
   static const paleColor = Color(0x40000000);
   static const primaryColor = Color(0xFFDF0000);
 }

@@ -25,7 +25,7 @@ Future<void> main() async {
 
 ### Firebase
 
-Passing a `FirebaseOptions` enables analytics.
+Passing a `FirebaseOptions` enables authentication and analytics.
 
 ```dart
 import 'package:flutter/widgets.dart';
@@ -42,13 +42,19 @@ Future<void> main() async {
 }
 ```
 
+Sign-in buttons will automatically show on the Settings screen.
+The default is Google and Apple providers. See "customizing" down below to change that.
+
+Configure the providers in the Firebase console following
+[the Firebase Auth howto](https://firebase.google.com/docs/auth/flutter/start).
+
 ## Customizing
 
 Subclass `QuickDelegate` and pass it to `ensureInitialized()` for customizations.
 
 ### Languages
 
-To change the list of supported languages:
+To change the list of supported languages, override the `locales` getter:
 
 ```dart
 import 'package:flutter/widgets.dart';
@@ -70,6 +76,26 @@ Future<void> main() async {
 
 When there's only one language, the switch does not how.
 
+### Authentication Providers
+
+By default the app shows the sign-in buttons for Google and Apple providers.
+To change that, override `authProviders` getter:
+
+```dart
+class AppDelegate extends QuickDelegate<TabEnum> {
+  @override
+  List<String> get authProviders => [GithubAuthProvider.PROVIDER_ID];
+}
+
+Future<void> main() async {
+  await QuickStart.ensureInitialized(
+    delegate: AppDelegate(),
+    firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const QuickApp());
+}
+```
 
 
 TODO: Expand.

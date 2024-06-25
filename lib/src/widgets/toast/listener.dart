@@ -34,6 +34,7 @@ class _ToastListenerWidgetState extends State<ToastListenerWidget> {
   }
 
   Future<void> _onToast(Toast toast) async {
+    _flutterToast.removeCustomToast();
     _flutterToast.showToast(
       gravity: ToastGravity.TOP_RIGHT,
       toastDuration: const Duration(seconds: 3),

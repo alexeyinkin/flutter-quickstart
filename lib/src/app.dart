@@ -28,6 +28,10 @@ class QuickApp extends StatelessWidget {
           ignoreErrors: true,
           package: QuickStart.packageName,
         ),
+        YamlAssetLoader(
+          directory: 'assets/translations',
+          ignoreErrors: true,
+        ),
       ]),
       fallbackLocale: settingsNotifier.locale,
       child: AnimatedBuilder(
