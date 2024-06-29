@@ -9,8 +9,10 @@ import 'router/page_stacks.dart' as ps;
 import 'router/route_information_parser.dart';
 import 'router/tab_enum.dart';
 import 'util/iterable.dart';
+import 'widgets/layout/footer.dart';
 import 'widgets/layout/padding.dart';
 import 'widgets/layout/spacing.dart';
+import 'widgets/logo/logo.dart';
 import 'widgets/menu/top_menu.dart';
 
 abstract class QuickDelegate<T extends Enum> {
@@ -23,6 +25,19 @@ abstract class QuickDelegate<T extends Enum> {
   ];
 
   UnmodifiableEnumMap<T, AbstractPage> get bottomPages;
+
+  Widget buildFooter(BuildContext context) => const QuickFooterWidget();
+
+  Widget buildLogo(
+    BuildContext context, {
+    required bool showText,
+    required double size,
+  }) =>
+      QuickLogoWidget(
+        delegate: this,
+        showText: showText,
+        size: size,
+      );
 
   Widget getHeaderFiller() => const SizedBox.shrink();
 

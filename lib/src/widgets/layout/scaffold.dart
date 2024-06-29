@@ -7,9 +7,8 @@ import '../../theme/theme.dart';
 import '../../util/build_context.dart';
 import '../../util/iterable.dart';
 import '../loading/small_circular_progress_indicator.dart';
-import '../logo.dart';
+import '../logo/logo_clickable_wrapper.dart';
 import 'constrained_width.dart';
-import 'footer.dart';
 import 'horizontal_black_line.dart';
 
 class QuickScaffold extends StatelessWidget {
@@ -59,16 +58,14 @@ class QuickScaffold extends StatelessWidget {
           child: Column(
             children: [
               child,
-              const HorizontalBlackLine(),
-              const QuickFooterWidget(),
+              delegate.buildFooter(context),
             ],
           ),
         ),
       BodySize.infinite => Column(
           children: [
             Expanded(child: child),
-            const HorizontalBlackLine(),
-            const QuickFooterWidget(),
+            delegate.buildFooter(context),
           ],
         ),
     };
@@ -119,10 +116,13 @@ class _NarrowHeader extends StatelessWidget {
       child: delegate.pad(
         Row(
           children: [
-            QuickLogoWidget(
+            LogoClickableWrapper(
               delegate: delegate,
-              size: 44, // Empirical from search field height.
-              showText: false,
+              child: delegate.buildLogo(
+                context,
+                size: 44, // Empirical from search field height.
+                showText: false,
+              ),
             ),
             Expanded(
               child: delegate.getHeaderFiller(),
@@ -147,22 +147,26 @@ class _WideHeader extends StatelessWidget {
 
     return ColoredBox(
       color: ext.headerColor,
-      child: Row(
-        children: [
-          const SizedBox(width: 30),
-          QuickLogoWidget(
-            delegate: delegate,
-            size: 40,
-            showText: true,
-          ),
-          const SizedBox(width: 30),
-          Expanded(
-            child: delegate.getHeaderFiller(),
-          ),
-          const SizedBox(width: 30),
-          delegate.getMenu(),
-          const SizedBox(width: 30),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            LogoClickableWrapper(
+              delegate: delegate,
+              child: delegate.buildLogo(
+                context,
+                size: 40,
+                showText: true,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: delegate.getHeaderFiller(),
+            ),
+            const SizedBox(width: 20),
+            delegate.getMenu(),
+          ],
+        ),
       ),
     );
   }
