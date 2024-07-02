@@ -1,3 +1,12 @@
+## 0.1.0-4.dev
+
+* Using [google_sign_in](https://pub.dev/packages/google_sign_in) for Google sign-in on non-web.
+* Calling `FirebaseAuth.signInWithProvider()` instead of `.signInWithPopup()` for non-web for providers other than Google.
+* Added `BuildNumberWidget` to show the build number in settings if `--dart-define=build=...` is set.
+* Added `QuickDelegate.getTabIcon()`.
+* Renamed `QuickDelegate.authProviders` to `.authProviderIds`.
+* Renamed `AuthenticationNotifier.signIn()` to `.signInWithProviderId()`.
+
 ## 0.1.0-3.dev
 
 * Added `AuthenticationNotifier`.

@@ -20,7 +20,7 @@ class QuickBottomNavigationBar<T extends Enum> extends StatelessWidget {
       items: {
         for (final tab in delegate.tabs)
           tab: BottomNavigationBarItem(
-            icon: _tabNameToIcon(tab.name),
+            icon: delegate.getTabIcon(tab),
             label: 'menu.${tab.name}'.tr(),
           ),
       },
@@ -37,12 +37,4 @@ class QuickBottomNavigationBar<T extends Enum> extends StatelessWidget {
       pageStacks.setCurrentStackKey(key);
     }
   }
-}
-
-Icon _tabNameToIcon(String name) {
-  return switch (name) {
-    'home' => const Icon(Icons.home),
-    'settings' => const Icon(Icons.settings),
-    _ => const Icon(Icons.circle_outlined),
-  };
 }

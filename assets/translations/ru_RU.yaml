@@ -1,5 +1,6 @@
 auth:
-  signInWith: 'Войти через {provider}'
+  signInWith:
+    google_com: Вход через Google
 
 common:
   footer: Сделано с помощью QuickStart
@@ -9,4 +10,5 @@ menu:
   settings: Настройки
 
 settings:
+  build: Сборка
   language: Язык

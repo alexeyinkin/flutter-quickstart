@@ -1,5 +1,6 @@
 auth:
-  signInWith: 'Sign in with {provider}'
+  signInWith:
+    google_com: Sign in with Google
 
 common:
   footer: Made with QuickStart
@@ -9,4 +10,5 @@ menu:
   settings: Settings
 
 settings:
+  build: Build
   language: Language

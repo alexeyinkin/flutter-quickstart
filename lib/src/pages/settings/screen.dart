@@ -9,6 +9,7 @@ import '../../widgets/language/switch.dart';
 import '../../widgets/layout/h2.dart';
 import '../../widgets/layout/scaffold.dart';
 import 'state.dart' as s;
+import 'widgets/build_number.dart';
 import 'widgets/table.dart';
 
 class QuickSettingsScreen extends StatelessWidget {
@@ -40,6 +41,8 @@ class QuickSettingsScreen extends StatelessWidget {
                   delegate: delegate,
                   showText: true,
                 ),
+              if (BuildNumberWidget.isBuildNumberSet)
+                'build': const BuildNumberWidget(),
             },
             delegate: delegate,
           ),

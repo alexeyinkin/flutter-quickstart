@@ -12,16 +12,10 @@ class SignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () async {
-        await authenticationNotifier.signIn(providerId);
+        await authenticationNotifier.signInWithProviderId(providerId);
       },
       child: SelectionContainer.disabled(
-        child: Text(
-          'auth.signInWith'.tr(
-            namedArgs: {
-              'provider': providerId,
-            },
-          ),
-        ),
+        child: Text('auth.signInWith.${providerId.replaceAll('.', '_')}'.tr()),
       ),
     );
   }

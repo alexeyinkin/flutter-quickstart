@@ -12,7 +12,7 @@ class SignInWidget extends StatelessWidget {
 
     return Column(
       children: delegate.addSpacing([
-        for (final provider in delegate.authProviders) SignInButton(provider),
+        for (final id in delegate.authProviderIds) SignInButton(id),
       ]),
     );
   }

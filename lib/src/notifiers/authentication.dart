@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 enum AuthenticationStatus {
   authenticated,
@@ -14,7 +15,6 @@ enum AuthenticationStatus {
 final authenticationNotifier = AuthenticationNotifier();
 
 class AuthenticationNotifier extends ChangeNotifier {
-  final _provider = GithubAuthProvider();
   AuthenticationStatus _status = AuthenticationStatus.loadingFirebase;
 
   AuthenticationNotifier() {
@@ -34,7 +34,7 @@ class AuthenticationNotifier extends ChangeNotifier {
     }
   }
 
-  Future<void> signIn(String providerId) async {
+  Future<void> signInWithProviderId(String providerId) async {
     if (providerId == AppleAuthProvider.PROVIDER_ID) {
       await signInWithProvider(AppleAuthProvider());
       return;
@@ -61,7 +61,7 @@ class AuthenticationNotifier extends ChangeNotifier {
     }
 
     if (providerId == GoogleAuthProvider.PROVIDER_ID) {
-      await signInWithProvider(GoogleAuthProvider());
+      await signInWithGoogle();
       return;
     }
 
@@ -87,11 +87,33 @@ class AuthenticationNotifier extends ChangeNotifier {
   }
 
   Future<void> signInWithEmail() async {
-    // TODO(alexeyinkin): Show dialog
+    throw UnimplementedError();
+  }
+
+  Future<void> signInWithGoogle() async {
+    if (kIsWeb) {
+      await FirebaseAuth.instance.signInWithPopup(GoogleAuthProvider());
+      return;
+    }
+
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<void> signInWithProvider(AuthProvider provider) async {
-    await FirebaseAuth.instance.signInWithPopup(provider);
+    if (kIsWeb) {
+      await FirebaseAuth.instance.signInWithPopup(provider);
+    } else {
+      await FirebaseAuth.instance.signInWithProvider(provider);
+    }
   }
 
   Future<void> signOut() async {
