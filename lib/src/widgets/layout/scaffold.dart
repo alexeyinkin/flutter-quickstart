@@ -125,7 +125,7 @@ class _NarrowHeader extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: delegate.getHeaderFiller(),
+              child: delegate.buildHeaderFiller(context),
             ),
           ].intersperse(delegate.spacing).toList(growable: true),
         ),
@@ -161,10 +161,10 @@ class _WideHeader extends StatelessWidget {
             ),
             const SizedBox(width: 20),
             Expanded(
-              child: delegate.getHeaderFiller(),
+              child: delegate.buildHeaderFiller(context),
             ),
             const SizedBox(width: 20),
-            delegate.getMenu(),
+            delegate.buildMenu(context),
           ],
         ),
       ),

@@ -4,7 +4,7 @@ description: |
   language switch, Firebase authentication, and more. Set up in seconds.
 
 repository: https://github.com/alexeyinkin/flutter-quickstart
-version: 0.1.0-4.dev
+version: 0.1.0-5.dev
 
 topics:
   - template
@@ -13,12 +13,13 @@ topics:
   - boilerplate
 
 environment:
-  sdk: ^3.5.0-180
+  sdk: ^3.5.0
 
 dependencies:
   app_state: ^0.9.4
   cloud_firestore: ^5.0.1
   collection: ^1.17.2
+  common_macros: ^0.1.0-7.dev
   easy_localization: ^3.0.7
   easy_localization_multi: ^0.2.0
   easy_localization_yaml: ^0.1.2
@@ -33,7 +34,7 @@ dependencies:
   google_sign_in: ^6.2.1
   keyed_collection_widgets: ^0.4.3
   model_fetch: ^0.5.6
-  model_fetch_firestore: ^0.6.0-2.dev
+  model_fetch_firestore: ^0.6.0-4.dev
   model_interfaces: ^0.3.1
   shared_preferences: ^2.2.3
   url_strategy: ^0.2.0

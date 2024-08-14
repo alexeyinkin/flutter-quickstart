@@ -39,13 +39,13 @@ abstract class QuickDelegate<T extends Enum> {
         size: size,
       );
 
-  Widget getHeaderFiller() => const SizedBox.shrink();
+  Widget buildHeaderFiller(BuildContext context) => const SizedBox.shrink();
 
-  Widget getMenu() => QuickTopMenuWidget(
+  Widget buildMenu(BuildContext context) => QuickTopMenuWidget(
         delegate: this,
       );
 
-  Icon getTabIcon(T tab) {
+  Icon buildTabIcon(BuildContext context, T tab) {
     return switch (tab.name) {
       'home' => const Icon(Icons.home),
       'settings' => const Icon(Icons.settings),

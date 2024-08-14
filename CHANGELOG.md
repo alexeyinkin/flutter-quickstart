@@ -1,3 +1,8 @@
+## 0.1.0-5.dev
+
+* Added `GroupedGridWidget`, `GroupedGridController`, and model groupers.
+* When clicked the logo, first scroll to the top if possible.
+
 ## 0.1.0-4.dev
 
 * Using [google_sign_in](https://pub.dev/packages/google_sign_in) for Google sign-in on non-web.
