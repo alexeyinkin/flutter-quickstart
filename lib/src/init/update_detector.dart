@@ -2,8 +2,8 @@ import '../loader_factories/global.dart';
 import '../models/global.dart';
 
 void initializeUpdateDetector() {
-  final bloc =
-      quickGlobalFirestoreLoaderFactory.liveByIdBloc(QuickGlobal.singleId);
+  final bloc = QuickGlobalFirestoreLoaderFactory.instance
+      .liveByIdBloc(QuickGlobal.singleId);
 
   bloc.states.listen(
     (event) {

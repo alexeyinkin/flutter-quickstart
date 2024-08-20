@@ -4,6 +4,7 @@ import 'package:model_interfaces/model_interfaces.dart';
 import '../../notifiers/grouped_grid_controller.dart';
 import '../../theme/extension.dart';
 import '../layout/h2.dart';
+import '../loading/small_circular_progress_indicator.dart';
 import 'collections.dart';
 import 'expand_collapse_button.dart';
 
@@ -23,6 +24,12 @@ class GroupedGridWidget<T extends WithIdTitle<String>> extends StatelessWidget {
     return AnimatedBuilder(
       animation: controller,
       builder: (context, _) {
+        if (!controller.isLoaded) {
+          return const Center(
+            child: SmallCircularProgressIndicator(),
+          );
+        }
+
         return Column(
           children: [
             for (final group in controller.groupedItems.keys)

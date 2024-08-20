@@ -1,3 +1,9 @@
+## 0.1.0-6.dev
+
+* Support [model_fetch](https://pub.dev/packages/model_fetch) 0.6.0-5.dev and [model_fetch_firestore](https://pub.dev/packages/model_fetch_firestore) 0.6.0-6.dev.
+* Added `AuthenticationBuilder`.
+* Added `SmallCircularProgressIndicator` to `GroupedGrid`.
+
 ## 0.1.0-5.dev
 
 * Added `GroupedGridWidget`, `GroupedGridController`, and model groupers.

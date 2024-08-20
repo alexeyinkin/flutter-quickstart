@@ -7,14 +7,9 @@ import '../models/global.dart';
 
 const _collection = QuickCollection.Global;
 
-final quickGlobalFirestoreLoaderFactory = QuickGlobalFirestoreLoaderFactory();
-
 class QuickGlobalFirestoreLoaderFactory
     extends AbstractFirestoreLoaderFactory<QuickGlobal, AbstractFilter> {
-  @override
-  CollectionReference<Map<String, dynamic>> getCollection() {
-    return FirebaseFirestore.instance.collection(_collection.name);
-  }
+  static final instance = QuickGlobalFirestoreLoaderFactory();
 
   @override
   QueryBuilder<QuickGlobal, AbstractFilter> createQueryBuilder(
@@ -24,10 +19,13 @@ class QuickGlobalFirestoreLoaderFactory
   }
 
   @override
-  QuickGlobal fromFirestore(
+  Future<QuickGlobal> fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
-  ) {
+  ) async {
     return QuickGlobal.fromMap({'id': snapshot.id, ...?snapshot.data()});
   }
+
+  @override
+  String get defaultCollectionName => _collection.name;
 }

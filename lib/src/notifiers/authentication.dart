@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:common_macros/common_macros.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,26 +13,63 @@ enum AuthenticationStatus {
   notAuthenticated,
 }
 
-final authenticationNotifier = AuthenticationNotifier();
+typedef LoadUserCallback<U> = Future<U?> Function(String id);
 
-class AuthenticationNotifier extends ChangeNotifier {
+class AuthenticationNotifier<U> extends ChangeNotifier {
   AuthenticationStatus _status = AuthenticationStatus.loadingFirebase;
 
-  AuthenticationNotifier() {
+  AuthenticationNotifier({
+    this.loadUserCallback,
+  }) {
     FirebaseAuth.instance.userChanges().listen(_onFirebaseUserChange);
   }
 
   AuthenticationStatus get status => _status;
 
+  @Getter()
+  U? _user;
+
+  int _userVersion = 0;
+
+  final LoadUserCallback<U>? loadUserCallback;
+
   Future<void> _onFirebaseUserChange(User? firebaseUser) async {
+    final userVersion = ++_userVersion;
+
     if (firebaseUser == null) {
       _status = AuthenticationStatus.notAuthenticated;
       notifyListeners();
-    } else {
+      return;
+    }
+
+    if (loadUserCallback == null) {
       _status = AuthenticationStatus.authenticated;
       notifyListeners();
-      // TODO(alexeyinkin): Load model if configured.
+      return;
     }
+
+    _user = null;
+    _status = AuthenticationStatus.authenticatedLoadingModel;
+    notifyListeners();
+
+    try {
+      final user = await loadUserCallback!(firebaseUser.uid);
+      if (userVersion != _userVersion) {
+        return; // A newer call is in progress or complete.
+      }
+
+      _user = user;
+      _status = AuthenticationStatus.authenticated;
+    } catch (ex) {
+      print(ex);
+      if (userVersion != _userVersion) {
+        return; // A newer call is in progress or complete.
+      }
+
+      _status = AuthenticationStatus.authenticatedModelError;
+    }
+
+    notifyListeners();
   }
 
   Future<void> signInWithProviderId(String providerId) async {

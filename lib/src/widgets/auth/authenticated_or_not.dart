@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../notifiers/authentication.dart';
+import '../../quickstart.dart';
 import '../loading/small_circular_progress_indicator.dart';
 import 'sign_in.dart';
 
@@ -18,6 +19,8 @@ class AuthenticatedOrNotWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authenticationNotifier = QuickStart.delegate.authenticationNotifier;
+
     return AnimatedBuilder(
       animation: authenticationNotifier,
       builder: (context, _) {

@@ -17,6 +17,7 @@ export 'src/theme/extension.dart';
 export 'src/util/iterable.dart';
 export 'src/util/map.dart';
 export 'src/widgets/auth/authenticated_or_not.dart';
+export 'src/widgets/auth/authentication_builder.dart';
 export 'src/widgets/clickable.dart';
 export 'src/widgets/collections/grouped_grid.dart';
 export 'src/widgets/layout/h2.dart';

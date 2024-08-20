@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../notifiers/authentication.dart';
+import '../../quickstart.dart';
 
 class SignInButton extends StatelessWidget {
   final String providerId;
@@ -13,7 +13,8 @@ class SignInButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () async {
         try {
-          await authenticationNotifier.signInWithProviderId(providerId);
+          await QuickStart.delegate.authenticationNotifier
+              .signInWithProviderId(providerId);
         } catch (ex) {
           print(ex);
           rethrow;

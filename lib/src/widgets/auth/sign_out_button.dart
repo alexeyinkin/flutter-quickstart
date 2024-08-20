@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../notifiers/authentication.dart';
+import '../../quickstart.dart';
 
 class SignOutButton extends StatelessWidget {
   const SignOutButton();
@@ -9,7 +9,7 @@ class SignOutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () async {
-        await authenticationNotifier.signOut();
+        await QuickStart.delegate.authenticationNotifier.signOut();
       },
       icon: const Icon(Icons.logout),
     );

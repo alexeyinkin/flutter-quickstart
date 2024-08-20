@@ -20,7 +20,7 @@ class QuickBottomNavigationBar<T extends Enum> extends StatelessWidget {
       items: {
         for (final tab in delegate.tabs)
           tab: BottomNavigationBarItem(
-            icon: delegate.getTabIcon(tab),
+            icon: delegate.buildTabIcon(context, tab),
             label: 'menu.${tab.name}'.tr(),
           ),
       },
