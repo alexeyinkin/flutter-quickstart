@@ -3,6 +3,7 @@ auth:
     google_com: Sign in with Google
 
 common:
+  edit: Edit
   footer: Made with QuickStart
 
 menu:

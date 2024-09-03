@@ -1,16 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/sizes.dart';
-import '../../quickstart.dart';
-import '../../widgets/auth/authenticated_or_not.dart';
-import '../../widgets/auth/profile_sign_out.dart';
-import '../../widgets/language/switch.dart';
-import '../../widgets/layout/h2.dart';
 import '../../widgets/layout/scaffold.dart';
 import 'state.dart' as s;
-import 'widgets/build_number.dart';
-import 'widgets/table.dart';
+import 'widgets/content.dart';
 
 class QuickSettingsScreen extends StatelessWidget {
   final s.QuickSettingsNotifier notifier;
@@ -19,35 +12,10 @@ class QuickSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final delegate = QuickStart.delegate;
-
-    return QuickScaffold(
+    return const QuickScaffold(
       maxWidth: QuickSizes.maxTextPageWidth,
       bodySize: BodySize.infinite,
-      body: Column(
-        children: delegate.addSpacing([
-          H2Widget(
-            'menu.settings'.tr(),
-          ),
-          AuthenticatedOrNotWidget(
-            authenticatedBuilder: (context, firebaseUser) {
-              return ProfileSignOutWidget(firebaseUser: firebaseUser);
-            },
-          ),
-          SettingsTableWidget(
-            children: {
-              if (delegate.settingsNotifier.locales.length > 1)
-                'language': LanguageSwitchWidget(
-                  delegate: delegate,
-                  showText: true,
-                ),
-              if (BuildNumberWidget.isBuildNumberSet)
-                'build': const BuildNumberWidget(),
-            },
-            delegate: delegate,
-          ),
-        ]),
-      ),
+      body: QuickSettingsContent(),
     );
   }
 }

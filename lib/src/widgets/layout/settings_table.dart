@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../delegate.dart';
-import '../../../util/iterable.dart';
-import 'line.dart';
+import '../../pages/settings/widgets/line.dart';
+import '../../quickstart.dart';
+import '../../util/iterable.dart';
 
 class SettingsTableWidget extends StatelessWidget {
   final Map<String, Widget> children;
-  final QuickDelegate delegate;
+  final String? keyPrefix;
 
   const SettingsTableWidget({
     required this.children,
-    required this.delegate,
+    this.keyPrefix,
   });
 
   @override
@@ -21,9 +21,10 @@ class SettingsTableWidget extends StatelessWidget {
         for (final entry in children.entries)
           SettingsLineWidget(
             textKey: entry.key,
+            keyPrefix: keyPrefix,
             child: entry.value,
           ),
-      ].intersperse(delegate.spacing).toList(growable: false),
+      ].intersperse(QuickStart.delegate.spacing).toList(growable: false),
     );
   }
 }

@@ -11,7 +11,7 @@ abstract final class _Keys {
 }
 
 const quickLocales = [
-  Locales.en_GB,
+  Locales.en_US,
   Locales.zh_CN,
   Locales.hi_IN,
   Locales.es_ES,

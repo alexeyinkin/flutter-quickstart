@@ -3,10 +3,12 @@ import 'package:flutter/widgets.dart';
 
 class SettingsLineWidget extends StatelessWidget {
   final Widget child;
+  final String? keyPrefix;
   final String textKey;
 
   const SettingsLineWidget({
     required this.child,
+    required this.keyPrefix,
     required this.textKey,
   });
 
@@ -16,7 +18,7 @@ class SettingsLineWidget extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            tr('settings.$textKey') + ':',
+            (keyPrefix == null ? textKey : tr('$keyPrefix.$textKey')) + ':',
             textAlign: TextAlign.end,
           ),
         ),

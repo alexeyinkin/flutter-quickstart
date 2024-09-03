@@ -9,7 +9,7 @@ import '../models/groupers/model_grouper.dart';
 
 const _collapsedIdsKey = 'collapsedIds';
 
-class GroupedGridController<T extends WithIdTitle<String>>
+class GroupedCollectionController<T extends WithIdTitle<String>>
     extends ChangeNotifier {
   final String name;
 
@@ -28,7 +28,7 @@ class GroupedGridController<T extends WithIdTitle<String>>
   @Getter()
   ModelGrouper<T, dynamic, WithIdTitle<String>> _grouper;
 
-  GroupedGridController({
+  GroupedCollectionController({
     required ModelGrouper<T, dynamic, WithIdTitle<String>> grouper,
     required this.name,
   }) : _grouper = grouper {

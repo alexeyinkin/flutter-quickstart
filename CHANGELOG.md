@@ -1,3 +1,8 @@
+## 0.1.0-7.dev
+
+* Renamed `GroupedGridController` to `GroupedCollectionController`.
+* Added `LazyLoadListView`, `MultilingualTextEditingController`, `QuickEditorMode`, `QuickSettingsContent`, `QuickStartLocaleIterableExtension`.
+
 ## 0.1.0-6.dev
 
 * Support [model_fetch](https://pub.dev/packages/model_fetch) 0.6.0-5.dev and [model_fetch_firestore](https://pub.dev/packages/model_fetch_firestore) 0.6.0-6.dev.

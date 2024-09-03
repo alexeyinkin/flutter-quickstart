@@ -3,7 +3,7 @@
 import 'dart:ui';
 
 abstract final class Locales {
-  static const en_GB = Locale('en', 'GB');
+  static const en_US = Locale('en', 'US');
   static const zh_CN = Locale('zh', 'CN');
   static const hi_IN = Locale('hi', 'IN');
   static const es_ES = Locale('es', 'ES');

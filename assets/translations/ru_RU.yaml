@@ -3,6 +3,7 @@ auth:
     google_com: Вход через Google
 
 common:
+  edit: Редактировать
   footer: Сделано с помощью QuickStart
 
 menu:

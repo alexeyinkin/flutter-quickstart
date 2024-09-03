@@ -131,7 +131,7 @@ class QuickThemeExtension extends ThemeExtension<QuickThemeExtension> {
     normal: GoogleFonts.firaSansExtraCondensed(
       textStyle: const TextStyle(),
     ),
-    onHeaderColor: QuickColors.colorBlack,
+    onHeaderColor: QuickColors.colorWhite,
     tabStyle: GoogleFonts.firaSansExtraCondensed(
       color: QuickColors.colorBlack,
       fontSize: FontSizeEnum.s.size,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:model_interfaces/model_interfaces.dart';
 
-import '../../notifiers/grouped_grid_controller.dart';
+import '../../notifiers/grouped_collection_controller.dart';
 import '../../theme/extension.dart';
 import '../layout/h2.dart';
 import '../loading/small_circular_progress_indicator.dart';
@@ -10,7 +10,7 @@ import 'expand_collapse_button.dart';
 
 class GroupedGridWidget<T extends WithIdTitle<String>> extends StatelessWidget {
   final SliverGridDelegate gridDelegate;
-  final GroupedGridController<T> controller;
+  final GroupedCollectionController<T> controller;
   final CollectionWidgetBuilder<T> itemBuilder;
 
   const GroupedGridWidget({
@@ -48,7 +48,7 @@ class GroupedGridWidget<T extends WithIdTitle<String>> extends StatelessWidget {
 
 class _GroupWidget<T extends WithIdTitle<String>> extends StatelessWidget {
   final SliverGridDelegate gridDelegate;
-  final GroupedGridController<T> controller;
+  final GroupedCollectionController<T> controller;
   final WithIdTitle<String> group;
   final CollectionWidgetBuilder<T> itemBuilder;
 

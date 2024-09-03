@@ -1,0 +1,4 @@
+enum QuickEditorMode {
+  create,
+  edit,
+}
