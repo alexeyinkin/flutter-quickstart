@@ -17,14 +17,16 @@ class SettingsLineWidget extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            (keyPrefix == null ? textKey : tr('$keyPrefix.$textKey')) + ':',
-            textAlign: TextAlign.end,
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Text(
+              (keyPrefix == null ? textKey : tr('$keyPrefix.$textKey')) + ':',
+            ),
           ),
         ),
         const SizedBox(width: 30),
         Expanded(
-          child: child,
+          child: Align(alignment: Alignment.topLeft, child: child),
         ),
       ],
     );

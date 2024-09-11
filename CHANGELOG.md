@@ -1,3 +1,8 @@
+## 0.1.0-8.dev
+
+* Added `FileController`, `VideoFileController`, `ImageSelector`, `VideoSelector`.
+* Removed `firebase_analytics` because of [a bug](https://github.com/flutter/flutter/issues/154733).
+
 ## 0.1.0-7.dev
 
 * Renamed `GroupedGridController` to `GroupedCollectionController`.

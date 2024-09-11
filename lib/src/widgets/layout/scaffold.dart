@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:multi_animated_builder/multi_animated_builder.dart';
 
 import '../../delegate.dart';
 import '../../quickstart.dart';
@@ -18,7 +17,7 @@ class QuickScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   final QuickDelegate? delegate;
   final double? maxWidth;
-  final List<Listenable> notifiers;
+  final Iterable<Listenable> notifiers;
   final VoidCallback? onSavePressed;
   final bool padding;
 
@@ -62,9 +61,9 @@ class QuickScaffold extends StatelessWidget {
     Widget child = body;
 
     if (notifiers.isNotEmpty) {
-      child = MultiAnimatedBuilder(
-        animations: notifiers,
-        builder: builder!,
+      child = ListenableBuilder(
+        listenable: Listenable.merge(notifiers),
+        builder: (context, _) => builder!(context),
       );
     }
 
