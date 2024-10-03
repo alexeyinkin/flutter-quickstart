@@ -5,7 +5,6 @@ import '../../delegate.dart';
 import '../../util/iterable.dart';
 import '../language/switch.dart';
 import 'menu_item.dart';
-// import 'profile_menu_item_widget.dart';
 
 class QuickTopMenuWidget<T extends Enum> extends StatelessWidget {
   const QuickTopMenuWidget({
@@ -22,7 +21,7 @@ class QuickTopMenuWidget<T extends Enum> extends StatelessWidget {
           MenuItemWidget<T>(
             delegate: delegate,
             tab: tab,
-            title: 'menu.${tab.name}'.tr(),
+            title: 'menu.${tab.name}'.tr(context: context),
           ),
         if (delegate.settingsNotifier.locales.length > 1)
           LanguageSwitchWidget(

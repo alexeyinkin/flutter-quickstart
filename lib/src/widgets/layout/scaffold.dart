@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../delegate.dart';
@@ -6,6 +7,7 @@ import '../../theme/extension.dart';
 import '../../theme/theme.dart';
 import '../../util/build_context.dart';
 import '../../util/iterable.dart';
+import '../clickable.dart';
 import '../loading/small_circular_progress_indicator.dart';
 import '../logo/logo_clickable_wrapper.dart';
 import 'constrained_width.dart';
@@ -16,6 +18,7 @@ class QuickScaffold extends StatelessWidget {
   final BodySize bodySize;
   final WidgetBuilder? builder;
   final QuickDelegate? delegate;
+  final Widget? filler;
   final double? maxWidth;
   final Iterable<Listenable> notifiers;
   final VoidCallback? onSavePressed;
@@ -25,6 +28,7 @@ class QuickScaffold extends StatelessWidget {
     required this.body,
     required this.bodySize,
     this.delegate,
+    this.filler,
     this.maxWidth,
     this.onSavePressed,
     this.padding = true,
@@ -35,6 +39,7 @@ class QuickScaffold extends StatelessWidget {
     required this.builder,
     required this.bodySize,
     this.delegate,
+    this.filler,
     this.maxWidth,
     this.notifiers = const [],
     this.onSavePressed,
@@ -43,6 +48,7 @@ class QuickScaffold extends StatelessWidget {
 
   const QuickScaffold.loading({
     this.delegate,
+    this.filler,
     this.maxWidth,
     this.padding = true,
   })  : bodySize = BodySize.infinite,
@@ -108,11 +114,13 @@ class QuickScaffold extends StatelessWidget {
                     if (isMobile)
                       _NarrowHeader(
                         delegate: delegate,
+                        filler: filler,
                         onSavePressed: onSavePressed,
                       )
                     else
                       _WideHeader(
                         delegate: delegate,
+                        filler: filler,
                         onSavePressed: onSavePressed,
                       ),
                     const HorizontalBlackLine(),
@@ -133,10 +141,12 @@ class QuickScaffold extends StatelessWidget {
 
 class _NarrowHeader extends StatelessWidget {
   final QuickDelegate delegate;
+  final Widget? filler;
   final VoidCallback? onSavePressed;
 
   const _NarrowHeader({
     required this.delegate,
+    required this.filler,
     required this.onSavePressed,
   });
 
@@ -148,7 +158,7 @@ class _NarrowHeader extends StatelessWidget {
       color: ext.headerColor,
       child: delegate.pad(
         Row(
-          children: [
+          children: delegate.addSpacing([
             LogoClickableWrapper(
               delegate: delegate,
               child: delegate.buildLogo(
@@ -157,12 +167,16 @@ class _NarrowHeader extends StatelessWidget {
                 showText: false,
               ),
             ),
+            if (filler != null)
+              Expanded(child: filler!),
             Expanded(
               child: delegate.buildHeaderFiller(context),
             ),
-            if (onSavePressed != null)
-              _SaveButton(ext: ext, onPressed: onSavePressed!),
-          ].intersperse(delegate.spacing).toList(growable: true),
+            if (onSavePressed != null) ...[
+              _CloseButton(ext: ext, showText: true),
+              _SaveButton(ext: ext, onPressed: onSavePressed!, showText: true),
+            ],
+          ]),
         ),
       ),
     );
@@ -171,10 +185,12 @@ class _NarrowHeader extends StatelessWidget {
 
 class _WideHeader extends StatelessWidget {
   final QuickDelegate delegate;
+  final Widget? filler;
   final VoidCallback? onSavePressed;
 
   const _WideHeader({
     required this.delegate,
+    required this.filler,
     required this.onSavePressed,
   });
 
@@ -196,14 +212,48 @@ class _WideHeader extends StatelessWidget {
                 showText: true,
               ),
             ),
+            if (filler != null)
+              Expanded(child: filler!),
             Expanded(
               child: delegate.buildHeaderFiller(context),
             ),
             delegate.buildMenu(context),
-            if (onSavePressed != null)
-              _SaveButton(ext: ext, onPressed: onSavePressed!),
+            if (onSavePressed != null) ...[
+              ColoredBox(
+                color: ext.onHeaderColor,
+                child: const SizedBox(width: 3, height: 40),
+              ),
+              _CloseButton(ext: ext, showText: true),
+              _SaveButton(ext: ext, onPressed: onSavePressed!, showText: true),
+            ],
           ].intersperse(const SizedBox(width: 20)).toList(growable: false),
         ),
+      ),
+    );
+  }
+}
+
+class _CloseButton extends StatelessWidget {
+  final QuickThemeExtension ext;
+  final bool showText;
+
+  const _CloseButton({
+    required this.ext,
+    required this.showText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClickableWidget(
+      onTap: () {
+        // QuickStart.delegate.pageStacks.currentStack?.
+        Navigator.of(context).pop();
+      },
+      child: Row(
+        children: QuickStart.delegate.addSpacing([
+          Icon(Icons.close, color: ext.onHeaderColor),
+          if (showText) Text('common.dontSave', style: ext.menuItem).tr(),
+        ]),
       ),
     );
   }
@@ -212,17 +262,24 @@ class _WideHeader extends StatelessWidget {
 class _SaveButton extends StatelessWidget {
   final QuickThemeExtension ext;
   final VoidCallback onPressed;
+  final bool showText;
 
   const _SaveButton({
     required this.ext,
     required this.onPressed,
+    required this.showText,
   });
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: Icon(Icons.check, color: ext.onHeaderColor),
+    return ClickableWidget(
+      onTap: onPressed,
+      child: Row(
+        children: QuickStart.delegate.addSpacing([
+          Icon(Icons.check, color: ext.onHeaderColor),
+          if (showText) Text('common.save', style: ext.menuItem).tr(),
+        ]),
+      ),
     );
   }
 }

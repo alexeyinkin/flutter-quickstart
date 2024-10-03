@@ -1,14 +1,14 @@
+import 'dart:async';
+
 import 'package:app_state/app_state.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_multi/easy_localization_multi.dart';
 import 'package:easy_localization_yaml/easy_localization_yaml.dart';
 import 'package:flutter/material.dart';
 
-import 'pages/tabs/screen.dart';
 import 'quickstart.dart';
 import 'router/delegate.dart';
 import 'theme/theme.dart';
-import 'util/element.dart';
 
 class QuickApp extends StatelessWidget {
   const QuickApp();
@@ -34,11 +34,14 @@ class QuickApp extends StatelessWidget {
         ),
       ]),
       fallbackLocale: settingsNotifier.locale,
-      child: AnimatedBuilder(
-        animation: settingsNotifier,
+      saveLocale: false,
+      child: ListenableBuilder(
+        listenable: settingsNotifier,
         builder: (context, _) {
-          (context as Element).markNeedsBuildDescendants();
-          return _MyApp();
+          unawaited(
+            EasyLocalization.of(context)!.setLocale(settingsNotifier.locale),
+          );
+          return const _MyApp();
         },
       ),
     );
@@ -46,16 +49,13 @@ class QuickApp extends StatelessWidget {
 }
 
 class _MyApp extends StatefulWidget {
+  const _MyApp();
+
   @override
   State<_MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<_MyApp> {
-  final _routerDelegate = QuickRouterDelegate(
-    QuickStart.delegate,
-    QuickTabsScreen(delegate: QuickStart.delegate),
-  );
-
   final _routeInformationParser = QuickStart.delegate.routeInformationParser;
   final _backButtonDispatcher =
       PageStacksBackButtonDispatcher(QuickStart.delegate.pageStacks);
@@ -66,7 +66,7 @@ class _MyAppState extends State<_MyApp> {
       debugShowCheckedModeBanner: false,
       backButtonDispatcher: _backButtonDispatcher,
       routeInformationParser: _routeInformationParser,
-      routerDelegate: _routerDelegate,
+      routerDelegate: routerDelegate,
       theme: quickThemeData,
       title: QuickStart.delegate.title,
 

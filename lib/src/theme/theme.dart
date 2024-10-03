@@ -11,6 +11,11 @@ final quickThemeData = ThemeData(
   inputDecorationTheme: const InputDecorationTheme(
     border: InputBorder.none,
     contentPadding: EdgeInsets.zero,
+    errorStyle: TextStyle(
+      color: QuickColors.error,
+      fontWeight: FontWeight.bold,
+      fontSize: 12,
+    ),
     fillColor: QuickColors.nestingColor,
     filled: true,
     isDense: true,

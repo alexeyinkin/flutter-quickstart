@@ -1,10 +1,16 @@
+SaveToEditPlaceholder:
+  text: Сохраните, чтобы редактировать это
+
 auth:
   signInWith:
     google_com: Вход через Google
 
 common:
+  dontSave: Не сохранять
   edit: Редактировать
   footer: Сделано с помощью QuickStart
+  none: '(Нет)'
+  save: Сохранить
 
 menu:
   home: Главная
@@ -13,3 +19,7 @@ menu:
 settings:
   build: Сборка
   language: Язык
+
+validation:
+  duplicateId: 'Такой ID уже есть: {id}'
+  empty: 'Введите значение'

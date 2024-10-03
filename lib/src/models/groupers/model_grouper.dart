@@ -41,9 +41,7 @@ abstract class ModelGrouper<
     required Iterable<G> groups,
   }) {
     final groupsMap = mapGroupsByIds(groups);
-    final result = {
-      for (final group in groups) group: <T>[],
-    };
+    final result = <G, List<T>>{};
 
     for (final item in items) {
       final groupIds = getGroupIds(item);

@@ -1,10 +1,16 @@
+SaveToEditPlaceholder:
+  text: Save to edit this
+
 auth:
   signInWith:
     google_com: Sign in with Google
 
 common:
+  dontSave: Don't Save
   edit: Edit
   footer: Made with QuickStart
+  none: (None)
+  save: Save
 
 menu:
   home: Home
@@ -13,3 +19,7 @@ menu:
 settings:
   build: Build
   language: Language
+
+validation:
+  duplicateId: 'This ID already exists: {id}'
+  empty: 'Must not be empty'

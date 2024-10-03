@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../delegate.dart';
@@ -35,10 +34,7 @@ class LanguageSwitchWidget extends StatelessWidget {
           ],
           onChanged: (locale) async {
             await Future.wait([
-              EasyLocalization.of(context)!.setLocale(locale!),
-              settingsNotifier.setLocale(
-                locale,
-              ),
+              settingsNotifier.setLocale(locale!),
             ]);
           },
           selectedItemBuilder: (context) => [

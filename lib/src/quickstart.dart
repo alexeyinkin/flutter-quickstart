@@ -41,6 +41,8 @@ class QuickStart {
       initializeUpdateDetector();
     }
 
+    await _delegate.settingsNotifier.initialize();
+
     initializeRouter(_delegate);
 
     _initialized = true;

@@ -1,3 +1,21 @@
+## 0.1.0-9.dev
+
+* Added `QuickValidator` and `QuickValidatorMixin`.
+* Added `FileController.saveToFirebase()`, `.markForDeletion()`, `.extension`, `.fileName`, `.setXFile()`.
+* Added `GroupedCollectionController.setItemsAndGroups()`.
+* Added `QuickScaffold.fillter`.
+* Added "Don't Save" button wherever "Save" button shows.
+* Made `routerDelegate` a public variable.
+* Added `UploadTask.toProgressFuture()` extension method.
+* Added `String.toPseudoRandomColor()` extension method.
+* Added `DeleteButton` to `ImageSelector` and `VideoSelector`, added glow around the selectors' buttons.
+* Added `SaveToEditPlaceholder`, `ProgressDialog`, `QuickDialog`.
+* Added `SmallCircularProgressIndicator.value`.
+* Added `LoaderValueNotifier`, `LoaderDropdownButton`.
+* Added `saveToFirebaseStorage()`, `deleteInFirebaseStorage()`, `UploadTask.toProgressFuture()` extension method.
+* Added `String.toPseudoRandomColor()` extension method.
+* Changed how `EasyLocalization` listens to the language from `SettingsNotifier`.
+
 ## 0.1.0-8.dev
 
 * Added `FileController`, `VideoFileController`, `ImageSelector`, `VideoSelector`.

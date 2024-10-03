@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../notifiers/file_controller.dart';
+import '../../quickstart.dart';
+import '../buttons/browse.dart';
+import '../buttons/delete.dart';
 import '../clickable.dart';
-import 'browse_button.dart';
 
 const _placeholderSize = 96.0;
 
@@ -32,9 +34,14 @@ class ImageSelector extends StatelessWidget {
           children: [
             w,
             Positioned(
-              right: 0,
-              top: 0,
-              child: BrowseButton(onPressed: controller.pickImage),
+              right: 10,
+              top: 10,
+              child: Row(
+                children: QuickStart.delegate.addSpacing([
+                  DeleteButton(onPressed: controller.markForDeletion),
+                  BrowseButton(onPressed: controller.pickImage),
+                ]),
+              ),
             ),
           ],
         );
@@ -53,6 +60,10 @@ class ImageSelector extends StatelessWidget {
   }
 
   Widget? _buildContentIfNonEmpty() {
+    if (controller.isMarkedForDeletion) {
+      return null;
+    }
+
     final xfile = controller.localXFile;
     if (xfile != null) {
       return Opacity(

@@ -2,8 +2,11 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 
 import '../../notifiers/video_file_controller.dart';
+import '../../quickstart.dart';
+import '../buttons/browse.dart';
+import '../buttons/delete.dart';
+import '../buttons/glow.dart';
 import '../clickable.dart';
-import 'browse_button.dart';
 
 const _placeholderSize = 96.0;
 
@@ -19,7 +22,6 @@ class VideoSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Building VideoSelector with aspectRatio $aspectRatio');
     return ListenableBuilder(
       listenable: Listenable.merge([controller, controller.chewieController]),
       builder: (context, _) {
@@ -37,9 +39,14 @@ class VideoSelector extends StatelessWidget {
                 child: w,
               ),
               Positioned(
-                right: 0,
-                top: 0,
-                child: BrowseButton(onPressed: controller.pickVideo),
+                right: 10,
+                top: 10,
+                child: Row(
+                  children: QuickStart.delegate.addSpacing([
+                    DeleteButton(onPressed: controller.markForDeletion),
+                    BrowseButton(onPressed: controller.pickVideo),
+                  ]),
+                ),
               ),
             ],
           ),

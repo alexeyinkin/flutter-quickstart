@@ -35,6 +35,17 @@ class GroupedCollectionController<T extends WithIdTitle<String>>
     unawaited(_loadExpansionState());
   }
 
+  void setItemsAndGroups({
+    required List<T> items,
+    required List<WithIdTitle<String>> groups,
+  }) {
+    _items = items;
+    _groups = groups;
+    _itemsLoaded = true;
+    _groupsLoaded = true;
+    _onChanged();
+  }
+
   set items(List<T> value) {
     _items = value;
     _itemsLoaded = true;

@@ -21,8 +21,8 @@ class AuthenticatedOrNotWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final authenticationNotifier = QuickStart.delegate.authenticationNotifier;
 
-    return AnimatedBuilder(
-      animation: authenticationNotifier,
+    return ListenableBuilder(
+      listenable: authenticationNotifier,
       builder: (context, _) {
         final user = FirebaseAuth.instance.currentUser;
 

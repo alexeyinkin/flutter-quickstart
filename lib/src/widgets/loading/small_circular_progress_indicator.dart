@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class SmallCircularProgressIndicator extends StatelessWidget {
   final double size;
+  final double? value;
 
   const SmallCircularProgressIndicator({
     this.size = 30,
+    this.value,
   });
 
   @override
@@ -13,7 +15,11 @@ class SmallCircularProgressIndicator extends StatelessWidget {
       child: SizedBox(
         width: size,
         height: size,
-        child: const CircularProgressIndicator(),
+        child: value == null
+            ? const CircularProgressIndicator()
+            : CircularProgressIndicator(
+                value: value,
+              ),
       ),
     );
   }

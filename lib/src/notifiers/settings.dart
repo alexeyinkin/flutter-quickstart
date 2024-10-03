@@ -34,6 +34,10 @@ class SettingsNotifier extends ChangeNotifier {
   String get lang => locale.languageCode;
 
   Future<void> setLocale(Locale newValue) async {
+    if (newValue == _locale) {
+      return;
+    }
+
     if (!locales.contains(newValue)) {
       throw Exception('Non-whitelisted locale: $newValue');
     }

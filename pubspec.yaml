@@ -4,7 +4,7 @@ description: |
   language switch, Firebase authentication, and more. Set up in seconds.
 
 repository: https://github.com/alexeyinkin/flutter-quickstart
-version: 0.1.0-8.dev
+version: 0.1.0-9.dev
 
 topics:
   - template
@@ -21,6 +21,7 @@ dependencies:
   cloud_firestore: ^5.0.1
   collection: ^1.17.2
   common_macros: ^0.1.0-7.dev
+  crypto: ^3.0.5
   easy_localization: ^3.0.7
   easy_localization_multi: ^0.2.0
   easy_localization_yaml: ^0.1.2
@@ -28,6 +29,7 @@ dependencies:
 #  firebase_analytics: ^11.0.1
   firebase_auth: ^5.1.0
   firebase_core: ^3.1.0
+  firebase_storage: ^12.3.1
   flag: ^7.0.0
   flutter: { sdk: flutter }
   fluttertoast: ^8.2.6
@@ -35,10 +37,13 @@ dependencies:
   google_sign_in: ^6.2.1
   image_picker: ^1.1.2
   keyed_collection_widgets: ^0.4.3
-  model_fetch: ^0.6.0-7.dev
-  model_fetch_firestore: ^0.6.0-7.dev
-  model_fetch_flutter: ^0.6.0-7.dev
+  mime: ^1.0.6
+  model_editors: ^0.4.3
+  model_fetch: ^0.6.3
+  model_fetch_firestore: ^0.6.3
+  model_fetch_flutter: ^0.6.3
   model_interfaces: ^0.3.2
+  progress_future: ^0.1.0
   shared_preferences: ^2.2.3
   url_strategy: ^0.2.0
   version: ^3.0.2
@@ -48,10 +53,12 @@ dev_dependencies:
   total_lints: ^3.4.0
 
 dependency_overrides:
-  #model_editors: { path: ../../dart/flutter-model-editors }
-  #model_fetch_firestore: { path: ../../dart/dart-model-fetch/model_fetch_firestore }
-  #model_fetch_flutter: { path: ../../dart/dart-model-fetch/model_fetch_flutter }
+  #model_editors: { path: ../flutter-model-editors }
+  #model_fetch: { path: ../dart-model-fetch/model_fetch }
+  #model_fetch_firestore: { path: ../dart-model-fetch/model_fetch_firestore }
+  #model_fetch_flutter: { path: ../dart-model-fetch/model_fetch_flutter }
   #model_interfaces: { path: ../../dart/dart-model-interfaces }
+  #progress_future: { path: ../dart-progress-future }
 
 flutter:
   assets:

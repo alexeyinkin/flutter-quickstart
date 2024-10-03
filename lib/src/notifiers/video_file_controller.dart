@@ -14,9 +14,17 @@ class VideoFileController extends FileController {
   VideoPlayerController? _playerController;
   ChewieController? _chewieController;
 
+  VideoFileController({
+    super.fileNameFormatter,
+  });
+
   ChewieController? get chewieController => _chewieController;
 
   bool _needsToUpdateVideoController() {
+    if (isMarkedForDeletion) {
+      return true;
+    }
+
     if (_lastRemoteUrl != remoteUrl) {
       return true;
     }
@@ -69,6 +77,10 @@ class VideoFileController extends FileController {
   }
 
   bool _createVideoPlayerControllerIfNeed() {
+    if (isMarkedForDeletion) {
+      return false;
+    }
+
     final localXFile = this.localXFile;
     if (localXFile != null) {
       _playerController = kIsWeb

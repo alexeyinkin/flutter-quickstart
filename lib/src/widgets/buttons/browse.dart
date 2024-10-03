@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'glow.dart';
+
 class BrowseButton extends StatelessWidget {
   final VoidCallback onPressed;
 
@@ -10,9 +12,11 @@ class BrowseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: const Icon(Icons.search),
+    return GlowWidget.defaultSizeIconButton(
+      child: IconButton(
+        onPressed: onPressed,
+        icon: const Icon(Icons.file_open),
+      ),
     );
   }
 }

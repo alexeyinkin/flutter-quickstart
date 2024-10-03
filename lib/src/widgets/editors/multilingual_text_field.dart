@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:model_editors/model_editors.dart';
 
 import '../../notifiers/multilingual_text_editing_controller.dart';
 import '../../util/iterable.dart';
 
-class MultilingualTextField extends StatelessWidget {
+class MultilingualTextField extends StatelessWidget
+    implements ControllerWidget {
+  @override
   final MultilingualTextEditingController controller;
 
   const MultilingualTextField({
