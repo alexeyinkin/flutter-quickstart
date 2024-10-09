@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:get_thumbnail_video/video_thumbnail.dart';
 import 'package:video_player/video_player.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 import 'file_controller.dart';
 
@@ -118,17 +117,13 @@ class VideoFileController extends FileController {
       return;
     }
 
-    final timeMs = (await _playerController?.position)?.inMilliseconds ?? 0;
+    final timeMs = (await _getPlayerPosition()).inMilliseconds;
 
     final bytes = await VideoThumbnail.thumbnailData(
       video: path,
       quality: 100,
       timeMs: timeMs,
     );
-
-    if (bytes == null) {
-      throw Exception('Taking a still at $timeMs milliseconds failed.');
-    }
 
     final file = XFile.fromData(
       bytes,
@@ -138,6 +133,14 @@ class VideoFileController extends FileController {
 
     for (final listener in _stillListeners) {
       listener(file);
+    }
+  }
+
+  Future<Duration> _getPlayerPosition() async {
+    try {
+      return await _playerController?.position ?? Duration.zero;
+    } catch (ex) {
+      return Duration.zero;
     }
   }
 }
