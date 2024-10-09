@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../notifiers/file_controller.dart';
@@ -8,6 +5,7 @@ import '../../quickstart.dart';
 import '../buttons/browse.dart';
 import '../buttons/delete.dart';
 import '../clickable.dart';
+import '../loading/small_circular_progress_indicator.dart';
 
 const _placeholderSize = 96.0;
 
@@ -66,10 +64,14 @@ class ImageSelector extends StatelessWidget {
 
     final xfile = controller.localXFile;
     if (xfile != null) {
+      final bytes = controller.localBytes;
+      if (bytes == null) {
+        return const SmallCircularProgressIndicator();
+      }
+
       return Opacity(
         opacity: controller.isChanged ? .5 : 1,
-        child:
-            kIsWeb ? Image.network(xfile.path) : Image.file(File(xfile.path)),
+        child: Image.memory(bytes),
       );
     }
 
