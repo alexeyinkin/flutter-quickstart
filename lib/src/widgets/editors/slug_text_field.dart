@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:model_editors/model_editors.dart';
 
 import '../../notifiers/slug_editing_controller.dart';
 import '../../quickstart.dart';
 
-class SlugTextField extends StatelessWidget {
+class SlugTextField extends StatelessWidget implements ControllerWidget {
+  @override
   final SlugEditingController controller;
 
   const SlugTextField({

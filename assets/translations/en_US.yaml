@@ -23,6 +23,7 @@ settings:
 validation:
   duplicateId: 'This ID already exists: {id}'
   empty: 'Must not be empty'
+  mapEmpty: 'Select at least one'
   slug: 'Must only contain Latin lowercase letters, numbers, and dashes, cannot start or end with a dash'
   stringLengthMax: 'Max {count} characters'
   stringLengthMin: 'Min {count} characters'

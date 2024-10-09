@@ -104,6 +104,12 @@ mixin QuickValidatorMixin on ChangeNotifier implements QuickValidator {
     }
   }
 
+  void validateMapNotEmpty(Object controller, {required Map value}) {
+    if (value.isEmpty) {
+      addValidationMessage(controller, 'validation.mapEmpty'.tr());
+    }
+  }
+
   /// Adds an error message if [value] is an empty string
   /// and associates the message with the [controller].
   void validateStringNotEmpty(Object controller, {required String? value}) {

@@ -23,6 +23,7 @@ settings:
 validation:
   duplicateId: 'Такой ID уже есть: {id}'
   empty: 'Введите значение'
+  mapEmpty: 'Выберите хотя бы одно'
   slug: 'Только маленькие английские буквы, цифры и дефисы, не дефис в начале и конце'
   stringLengthMax: 'Максимум {count} знаков'
   stringLengthMin: 'Минимум {count} знаков'
