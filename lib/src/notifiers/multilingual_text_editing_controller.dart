@@ -10,7 +10,11 @@ class MultilingualTextEditingController
   })  : controllers = {
           for (final lang in languageCodes) lang: TextEditingController(),
         },
-        super(MultilingualString());
+        super(MultilingualString()) {
+    for (final controller in controllers.values) {
+      controller.addListener(notifyListeners);
+    }
+  }
 
   @override
   MultilingualString get value => MultilingualString({

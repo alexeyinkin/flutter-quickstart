@@ -22,6 +22,7 @@ dependencies:
   collection: ^1.17.2
   common_macros: ^0.1.0-7.dev
   crypto: ^3.0.5
+  diacritic: ^0.1.6
   easy_localization: ^3.0.7
   easy_localization_multi: ^0.2.0
   easy_localization_yaml: ^0.1.2
@@ -42,7 +43,7 @@ dependencies:
   model_fetch: ^0.6.3
   model_fetch_firestore: ^0.6.3
   model_fetch_flutter: ^0.6.3
-  model_interfaces: ^0.3.2
+  model_interfaces: ^0.3.4
   progress_future: ^0.1.0
   shared_preferences: ^2.2.3
   url_strategy: ^0.2.0

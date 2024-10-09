@@ -106,9 +106,37 @@ mixin QuickValidatorMixin on ChangeNotifier implements QuickValidator {
 
   /// Adds an error message if [value] is an empty string
   /// and associates the message with the [controller].
-  void validateStringNotEmpty(Object controller, {required String value}) {
-    if (value == '') {
+  void validateStringNotEmpty(Object controller, {required String? value}) {
+    if (value == null || value == '') {
       addValidationMessage(controller, 'validation.empty'.tr());
+    }
+  }
+
+  void validateSlug(Object controller, {required String value}) {
+    final re = RegExp(r'^[a-z0-9]+(-[a-z0-9]+)*$');
+    if (!re.hasMatch(value)) {
+      addValidationMessage(controller, 'validation.slug'.tr());
+    }
+  }
+
+  void validateStringLength(
+    Object controller, {
+    required String value,
+    int? max,
+    int? min,
+  }) {
+    if (max != null && value.length > max) {
+      addValidationMessage(
+        controller,
+        'validation.stringLengthMax'.tr(namedArgs: {'count': '$max'}),
+      );
+    }
+
+    if (min != null && value.length < min) {
+      addValidationMessage(
+        controller,
+        'validation.stringLengthMin'.tr(namedArgs: {'count': '$min'}),
+      );
     }
   }
 }
