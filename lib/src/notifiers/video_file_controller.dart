@@ -3,9 +3,13 @@ import 'dart:io';
 
 import 'package:chewie/chewie.dart';
 import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 import 'file_controller.dart';
+
+typedef StillListener = ValueSetter<XFile>;
 
 class VideoFileController extends FileController {
   Uri? _lastRemoteUrl;
@@ -13,6 +17,8 @@ class VideoFileController extends FileController {
 
   VideoPlayerController? _playerController;
   ChewieController? _chewieController;
+
+  final _stillListeners = <StillListener>{};
 
   VideoFileController({
     super.fileNameFormatter,
@@ -96,5 +102,42 @@ class VideoFileController extends FileController {
     }
 
     return false;
+  }
+
+  void addStillListener(StillListener listener) {
+    _stillListeners.add(listener);
+  }
+
+  void removeScreenshotListener(StillListener listener) {
+    _stillListeners.remove(listener);
+  }
+
+  Future<void> takeStill() async {
+    final path = localXFile?.path ?? remoteUrl?.toString();
+    if (path == null) {
+      return;
+    }
+
+    final timeMs = (await _playerController?.position)?.inMilliseconds ?? 0;
+
+    final bytes = await VideoThumbnail.thumbnailData(
+      video: path,
+      quality: 100,
+      timeMs: timeMs,
+    );
+
+    if (bytes == null) {
+      throw Exception('Taking a still at $timeMs milliseconds failed.');
+    }
+
+    final file = XFile.fromData(
+      bytes,
+      mimeType: 'image/png',
+      name: 'still_$timeMs.png',
+    );
+
+    for (final listener in _stillListeners) {
+      listener(file);
+    }
   }
 }

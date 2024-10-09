@@ -43,6 +43,7 @@ class VideoSelector extends StatelessWidget {
                 top: 10,
                 child: Row(
                   children: QuickStart.delegate.addSpacing([
+                    _StillButton(onPressed: controller.takeStill),
                     DeleteButton(onPressed: controller.markForDeletion),
                     BrowseButton(onPressed: controller.pickVideo),
                   ]),
@@ -86,5 +87,24 @@ class VideoSelector extends StatelessWidget {
     }
 
     return w;
+  }
+}
+
+class _StillButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const _StillButton({
+    super.key,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GlowWidget.defaultSizeIconButton(
+      child: IconButton(
+        onPressed: onPressed,
+        icon: const Icon(Icons.screenshot),
+      ),
+    );
   }
 }
