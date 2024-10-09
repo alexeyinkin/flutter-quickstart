@@ -1,3 +1,11 @@
+## 0.1.0-10.dev
+
+* Added `SlugEditingController`, `SlugTextField`, `Validator.validateSlug()`.
+* Added `Validator.validateStringLength()`.
+* Narrow view in `SettingsTableWidget`.
+* Taking stills in `VideoFileController`.
+* Fixed `ImageSelector` for iOS.
+
 ## 0.1.0-9.dev
 
 * Added `QuickValidator` and `QuickValidatorMixin`.
