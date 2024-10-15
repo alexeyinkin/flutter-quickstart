@@ -6,11 +6,16 @@ auth:
     google_com: Sign in with Google
 
 common:
+  cancel: Cancel
+  done: Done
   dontSave: Don't Save
   edit: Edit
   footer: Made with QuickStart
+  no: No
   none: (None)
+  ok: OK
   save: Save
+  yes: Yes
 
 menu:
   home: Home

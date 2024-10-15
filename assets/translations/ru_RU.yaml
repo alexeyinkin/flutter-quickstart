@@ -6,11 +6,16 @@ auth:
     google_com: Вход через Google
 
 common:
+  cancel: Отмена
+  done: Готово
   dontSave: Не сохранять
   edit: Редактировать
   footer: Сделано с помощью QuickStart
+  no: Нет
   none: '(Нет)'
+  ok: OK
   save: Сохранить
+  yes: Да
 
 menu:
   home: Главная

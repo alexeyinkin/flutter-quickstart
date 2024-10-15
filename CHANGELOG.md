@@ -1,3 +1,12 @@
+## 0.1.0-11.dev
+
+* Taking stills in `VideoFileController` on web.
+* Added `Validator.validateMapNotEmpty()`.
+* Added input and confirm dialogs.
+* Handling a cloud function call result.
+* Added `UserpicWidget`.
+* Exported `BuildContext.isMobileScreen()`.
+
 ## 0.1.0-10.dev
 
 * Added `SlugEditingController`, `SlugTextField`, `Validator.validateSlug()`.
